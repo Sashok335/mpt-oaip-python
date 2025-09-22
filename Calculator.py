@@ -14,7 +14,7 @@ def innt(a,op):
             return "error"
 
 def vivod(a,op,b,ans):
-    if op in check_list and ans is bool:
+    if op in check_list and isinstance(ans,bool):
         if ans == True: print(f"{a} {op} {b} - верно")
         elif ans == False: print(f"{a} {op} {b} - неверно")
     elif op in check_list and ans is not bool:print(f"{a} {op} {b} = {ans}")
