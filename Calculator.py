@@ -1,4 +1,4 @@
-check_list = ["+", "-", "*", "/", "//", "%", "**"]
+check_list = ["+", "-", "*", "/", "//", "%", "**","==","!=","<",">","<=",">="]
 check_list1=["and","or","not"]
 
 def bol(a):
@@ -17,10 +17,10 @@ def vivod(a,op,b,ans):
     if op in check_list and ans is bool:
         if ans == True: print(f"{a} {op} {b} - верно")
         elif ans == False: print(f"{a} {op} {b} - неверно")
-    elif op in check_list and ans is not bool:print(f"{a}{op}{b}={ans}")
+    elif op in check_list and ans is not bool:print(f"{a} {op} {b} = {ans}")
     elif op in check_list1:
         if op == "not":print(f"not {a} = {not bol(a)}\nnot {b} = {not bol(b)}")
-        else:print(a,op,b,"=",ans)
+        else:print(a, op ,b,"=",ans)
     else:alert("vivod")
 
 def alert(warn):
