@@ -6,12 +6,11 @@ def bol(a):
     elif a.lower() == "false": return False
 
 def innt(a,op):
-    if op in check_list:
-        try:
-            a = int(a)
-            return a
-        except ValueError:
-            return "error"
+    try:
+        a = int(a)
+        return a
+    except ValueError:
+        return "error"
 
 def vivod(a,op,b,ans):
     if op in check_list and isinstance(ans,bool):
