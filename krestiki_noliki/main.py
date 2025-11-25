@@ -155,7 +155,7 @@ def hodi():
         now += 1
         smena_hoda()
 
-    if not game and now <= razm_pole * razm_pole + 1:
+    if not game and now == razm_pole * razm_pole:
         pokaz()
         print("\nНичья!")
 
