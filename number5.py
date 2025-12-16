@@ -15,20 +15,18 @@ data = [
     ["Максим", 36, "Москва", "Разработчик", 150000]
 ]
 
-with open('employees_with_salary.csv', 'w', newline='', encoding='utf-8') as f:
-    writer = csv.writer(f)
+with open('employees_with_salary.csv', 'w', newline='', encoding='utf-8') as file:
+    writer = csv.writer(file)
     writer.writerows(data)
 
 
-avg_age_by_city = {}
-total_salary_by_position = {}
-count_by_city = {}
+avg_age_by_city = {} # Средний вораст в каждом городе
+total_salary_by_position = {} #Сумма ЗП по каждой должности
+count_by_city = {} #кол-во сотрудников в каждом городе
+age_sum_by_city = {} #Сумма воростов в каждом городе
 
-age_sum_by_city = {}
-count_by_city_temp = {}
-
-with open('employees_with_salary.csv', encoding='utf-8') as f:
-    reader = csv.DictReader(f)
+with open('employees_with_salary.csv', encoding='utf-8') as file:
+    reader = csv.DictReader(file)
     for row in reader:
         city = row['Город']
         age = int(row['Возраст'])
@@ -36,20 +34,18 @@ with open('employees_with_salary.csv', encoding='utf-8') as f:
         salary = float(row['Зарплата'])
 
         age_sum_by_city[city] = age_sum_by_city.get(city, 0) + age
-        count_by_city_temp[city] = count_by_city_temp.get(city, 0) + 1
-
+        count_by_city[city] = count_by_city.get(city, 0) + 1
         total_salary_by_position[position] = total_salary_by_position.get(position, 0.0) + salary
 
 for city in age_sum_by_city:
-    avg_age_by_city[city] = round(age_sum_by_city[city] / count_by_city_temp[city])
+    avg_age_by_city[city] = round(age_sum_by_city[city] / count_by_city[city])
 
-count_by_city = count_by_city_temp
 
 res = {
-    "средний_возраст_по_городам": avg_age_by_city,
-    "сумма_зарплат_по_должностям": total_salary_by_position,
-    "количество_по_городам": count_by_city
+    "Cредний_возраст_по_городам": avg_age_by_city,
+    "Cумма_зарплат_по_должностям": total_salary_by_position,
+    "Количество_по_городам": count_by_city
 }
 
-with open('stats.json', 'w', encoding='utf-8') as f:
-    json.dump(res, f, ensure_ascii=False, indent=2)
+with open('stats.json', 'w', encoding='utf-8') as file:
+    json.dump(res, file, ensure_ascii=False, indent=2)
